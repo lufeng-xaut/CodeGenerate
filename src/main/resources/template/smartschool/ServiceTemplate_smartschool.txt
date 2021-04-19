@@ -1,0 +1,60 @@
+/**
+ * [(${clazzDefine.clazzComment})]
+ *
+ * @author lufeng
+ */
+@Service
+@Transactional
+public class [(${clazzDefine.clazzName})]Service {
+    @Autowired
+    private [(${clazzDefine.clazzName})]Mapper [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper;
+
+    public [(${clazzDefine.clazzName})] findById(String id) {
+            return [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.selectByPrimaryKey(id);
+    }
+
+    public [(${clazzDefine.clazzName})] add([(${clazzDefine.clazzName})]EditBo editBo) {
+        [(${clazzDefine.clazzName})] model = editBo.toModel();
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.insertSelective(model);
+        return model;
+    }
+
+    public [(${clazzDefine.clazzName})] edit([(${clazzDefine.clazzName})]EditBo editBo) {
+        [(${clazzDefine.clazzName})] model = this.findById(editBo.getId());
+        FantAssert.notNull(model, "当前记录已删除，请刷新");
+        [(${clazzDefine.clazzName})] editModel = editBo.toModel();
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.updateByPrimaryKey(editModel);
+        return findById(editBo.getId());
+    }
+
+    public void delete(String id) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.deleteByPrimaryKey(id);
+    }
+
+    public int batchDelete(List<String> idList) {
+            return [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.batchDelete(idList);
+    }
+
+    public int batchAdd(List<[(${clazzDefine.clazzName})]> list) {
+        if(list == null || list.isEmpty()){
+            return 0;
+        }
+        return [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.batchAdd(list);
+    }
+
+    public FantPage<[(${clazzDefine.clazzName})]> page([(${clazzDefine.clazzName})]PageQueryBo queryBo) {
+        PageHelper.startPage(queryBo.getPageNo(), queryBo.getPageSize());
+        List<[(${clazzDefine.clazzName})]> boList = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.page(queryBo);
+        PageInfo<[(${clazzDefine.clazzName})]> pageInfo = PageInfo.of(boList);
+        return new FantPage<>(pageInfo.getList(), pageInfo.getTotal(), pageInfo.getPageSize(), pageInfo.getPageNum());
+    }
+
+    public void enable(String id) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.updateState(id,FantState.ON);
+	}
+
+	public void disable(String id) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.updateState(id,FantState.OFF);
+	}
+
+}

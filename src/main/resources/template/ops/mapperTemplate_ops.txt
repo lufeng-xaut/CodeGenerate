@@ -1,0 +1,28 @@
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * [(${tableModel.tableComment})]
+ *
+ * @author lufeng
+ */
+@Mapper
+public interface [(${tableModel.tableJavaName})]Mapper {
+    void add([(${tableModel.tableJavaName})] model);
+
+    void edit([(${tableModel.tableJavaName})] model);
+
+    [(${tableModel.tableJavaName})] get(String id);
+
+    void delete(String id);
+
+    int batchDelete(@Param("ids") List<String> idList);
+
+    int batchAdd(@Param("list") List<[(${tableModel.tableJavaName})]> list);
+
+    @Select("select * from [(${tableModel.tableName})] limit #{offset},#{size}")
+    List<[(${tableModel.tableJavaName})]> findLimit(@Param("offset") Integer offset, @Param("size") Integer size);
+
+    @Select("select count(1) from [(${tableModel.tableName})]")
+    Integer count();
+}

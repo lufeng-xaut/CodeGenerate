@@ -1,0 +1,33 @@
+
+import lombok.Data;
+
+/**
+ * <p>
+ * [(${clazzDefine.clazzComment})]
+ * </p>
+ *
+ * @author
+ */
+@Data
+public class [(${clazzDefine.clazzName})]Response {
+    @Data
+    public static class Get[(${clazzDefine.clazzName})]Response {
+        [# th:each="javaField : ${clazzDefine.javaFieldList}"]
+        /**
+        * [(${javaField.comment})]
+        */
+        private [(${javaField.type})] [(${javaField.name})];
+        [/]
+    }
+
+
+    @Data
+    public static class Save[(${clazzDefine.clazzName})]Response {
+        /**
+         * [(${clazzDefine.clazzComment})]id
+         */
+        private String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id;
+    }
+
+
+}

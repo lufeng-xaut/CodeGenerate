@@ -1,0 +1,81 @@
+/**
+ * [(${clazzDefine.clazzComment})]
+ *
+ * @author lufeng
+ */
+@Api(tags = {"[(${clazzDefine.clazzComment})]"})
+@FantLog(code = "web.[(${clazzDefine.clazzName})]", name = "[(${clazzDefine.clazzComment})]")
+@RestController
+@RequestMapping("/web/[(${clazzDefine.clazzName})]")
+public class [(${clazzDefine.clazzName})]Controller {
+    @Autowired
+    private [(${clazzDefine.clazzName})]Service [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service;
+
+    @ApiOperation(value = "根据ID获取")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "正常返回", response = FantResult.class)})
+    @GetMapping("/{id}")
+    public FantResult<[(${clazzDefine.clazzName})]> findById(@ApiParam(value = "id") @PathVariable("id") String id) {
+        [(${clazzDefine.clazzName})] model = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.findById(id);
+        return FantResult.ok(model);
+    }
+
+    @ApiOperation(value = "新增")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "正常返回", response = FantResult.class)})
+    @PostMapping("")
+    public FantResult<[(${clazzDefine.clazzName})]> add(@ApiParam(value = "新增", required = true) @RequestBody @Valid [(${clazzDefine.clazzName})]AddVo addVo) {
+        [(${clazzDefine.clazzName})]EditBo editBo = addVo.toBo();
+        [(${clazzDefine.clazzName})] model = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.add[(${clazzDefine.clazzName})](editBo);
+        return FantResult.ok(model);
+    }
+
+    @ApiOperation(value = "编辑")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "正常返回", response = FantResult.class)})
+    @PutMapping("")
+    public FantResult<[(${clazzDefine.clazzName})]> edit(@ApiParam(value = "编辑", required = true) @RequestBody @Valid [(${clazzDefine.clazzName})]EditVo editVo) {
+        [(${clazzDefine.clazzName})]EditBo editBo = editVo.toBo();
+        [(${clazzDefine.clazzName})] editModel = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.update[(${clazzDefine.clazzName})](editBo);
+        return FantResult.ok(editModel);
+    }
+
+    @ApiOperation(value = "删除")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "正常返回", response = FantPage.class)})
+    @DeleteMapping("/{id}")
+    public FantResult<String> delete(@ApiParam(value = "id") @PathVariable("id") String id) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.delete[(${clazzDefine.clazzName})](id);
+        return FantResult.ok();
+    }
+
+    @ApiOperation(value = "批量删除")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "正常返回", response = FantPage.class)})
+    @DeleteMapping("/batch/delete")
+    public FantResult<String> batchDelete(@ApiParam(value = "条件对象") @RequestBody BatchDeletedQueryVo queryVo) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.batchDelete(queryVo.getIdList());
+        return FantResult.ok();
+    }
+
+    @ApiOperation(value = "分页展示")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "正常返回", response = FantPage.class)})
+    @PostMapping("/page")
+    public FantPage<[(${clazzDefine.clazzName})]> page(@RequestBody @Valid [(${clazzDefine.clazzName})]PageQueryVo queryVo) {
+        [(${clazzDefine.clazzName})]PageQueryBo queryBo = queryVo.toBo();
+        FantPage<[(${clazzDefine.clazzName})]> fantPage = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.page(queryBo);
+        return fantPage;
+    }
+
+    @ApiOperation(value = "启用")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "正常返回", response = FantResult.class)})
+    @PostMapping("/enable/{id}")
+    public FantResult<String> enable(@ApiParam(value = "[(${clazzDefine.clazzComment})]id", required = true) @PathVariable("id") String id) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.enable(id);
+        return FantResult.ok();
+    }
+
+    @ApiOperation(value = "停用")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "正常返回", response = FantResult.class)})
+    @PostMapping("/disable/{id}")
+    public FantResult<String> disable(@ApiParam(value = "[(${clazzDefine.clazzComment})]id", required = true) @PathVariable("id") String id) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.disable(id);
+        return FantResult.ok();
+    }
+
+}

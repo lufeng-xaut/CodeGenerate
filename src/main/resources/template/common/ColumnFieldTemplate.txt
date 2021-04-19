@@ -1,0 +1,30 @@
+
+[(${mysqlTable.tableName})]    [(${mysqlTable.tableComment})]
+
+[# th:each="column : ${mysqlTable.columnList}"]
+[(${column.name})]
+[/]
+
+[# th:each="column : ${mysqlTable.columnList}"]
+[(${column.type})]
+[/]
+
+[# th:each="column : ${mysqlTable.columnList}"]
+[(${column.comment})]
+[/]
+
+#########################################################################################
+
+
+[(${clazzDefine.clazzName})]    [(${#strings.unCapitalize(clazzDefine.clazzName)})]      [(${clazzDefine.clazzComment})]
+
+[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+[(${javaField.name})]
+[/]
+
+[(${clazzDefine.clazzName})]    [(${#strings.unCapitalize(clazzDefine.clazzName)})]      [(${clazzDefine.clazzComment})]
+
+[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+[(${javaField.type})]
+[/]
+

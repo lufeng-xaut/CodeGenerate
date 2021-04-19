@@ -1,0 +1,18 @@
+CREATE TABLE `intellectual_property` (
+  `intellectual_property_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '产权id',
+  `type` int DEFAULT NULL COMMENT '产权类型',
+  `intellectual_property_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '产权名称',
+  `link_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '联系人',
+  `link_phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '联系电话',
+  `leave_message` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '留言',
+  `inspect_type` int DEFAULT NULL COMMENT '评估类型',
+  `status` int DEFAULT NULL COMMENT '审核状态:1受理 2拒绝',
+  `audit_time` datetime DEFAULT NULL COMMENT '审核时间',
+  `enable` int DEFAULT '1' COMMENT '是否启用：1启用 2停用',
+  `delete_flag` int DEFAULT '1' COMMENT '是否删除：1未删除 2已删除',
+  `create_user` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人id',
+  `create_time` datetime(3) DEFAULT NULL COMMENT '创建时间',
+  `edit_user` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '编辑人id',
+  `edit_time` datetime(3) DEFAULT NULL COMMENT '编辑时间',
+  PRIMARY KEY (`intellectual_property_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='产权服务';

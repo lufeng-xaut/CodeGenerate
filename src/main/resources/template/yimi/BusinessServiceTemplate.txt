@@ -1,0 +1,38 @@
+
+
+public interface [(${clazzDefine.clazzName})]BusinessService {
+    /**
+     * 根据id查询[(${clazzDefine.clazzComment})]
+     *
+     * @param id
+     * @return
+     */
+    [(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response getById(String id);
+
+    /**
+     * 新增/编辑[(${clazzDefine.clazzComment})]
+     *
+     * @param request
+     * @return
+     */
+    [(${clazzDefine.clazzName})]Response.Save[(${clazzDefine.clazzName})]Response save[(${clazzDefine.clazzName})]([(${clazzDefine.clazzName})]Request.Save[(${clazzDefine.clazzName})]Request request);
+
+    /**
+     * 删除[(${clazzDefine.clazzComment})]
+     *
+     * @param request
+     * @return
+     */
+    void delete[(${clazzDefine.clazzName})]([(${clazzDefine.clazzName})]Request.Delete[(${clazzDefine.clazzName})]Request request);
+
+    /**
+     * 管理后台-分页查询[(${clazzDefine.clazzComment})]
+     *
+     * @param request1
+     * @return
+     */
+    IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> page[(${clazzDefine.clazzName})]Admin([(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request1);
+
+}
+
+

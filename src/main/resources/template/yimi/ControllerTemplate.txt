@@ -1,0 +1,58 @@
+package com.gurfcc.urfcc.opportunity.business.controller;
+
+
+import com.gurfcc.urfcc.common.vo.CommonResponseVo;
+import com.gurfcc.urfcc.core.UrfccDelegate;
+import com.gurfcc.urfcc.core.annotation.NotRepeatSubmitAnnotation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * <p>
+ * [(${clazzDefine.clazzComment})] 前端控制器
+ * </p>
+ *
+ * @author
+ * @since
+ */
+@RestController
+@RequestMapping("/")
+public class [(${clazzDefine.clazzName})]Controller {
+    @Autowired
+    private [(${clazzDefine.clazzName})]BusinessService [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService;
+
+    @GetMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/findById")
+    public Object findById(@ModelAttribute [(${clazzDefine.clazzName})]Request.Get[(${clazzDefine.clazzName})]Request request) {
+        return UrfccDelegate.execute(request, request1 -> {
+            [(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response response = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.getById(request1.get[(${clazzDefine.clazzName})]Id());
+            return new CommonResponseVo(response);
+        }, request.getCurrentUserId(), "管理后台-根据id查询[(${clazzDefine.clazzComment})]");
+    }
+
+    @PostMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/save[(${clazzDefine.clazzName})]")
+    @NotRepeatSubmitAnnotation(keyPrefix = "[(${#strings.unCapitalize(clazzDefine.clazzName)})].save[(${clazzDefine.clazzName})]")
+    public Object save[(${clazzDefine.clazzName})](@RequestBody [(${clazzDefine.clazzName})]Request.Save[(${clazzDefine.clazzName})]Request request) {
+        return UrfccDelegate.execute(request, request1 -> {
+            [(${clazzDefine.clazzName})]Response.Save[(${clazzDefine.clazzName})]Response response = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.save[(${clazzDefine.clazzName})](request1);
+            return new CommonResponseVo(response);
+        }, request.getCurrentUserId(), "管理后台-新增/编辑[(${clazzDefine.clazzComment})]");
+    }
+
+    @PostMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/delete[(${clazzDefine.clazzName})]")
+    public Object delete[(${clazzDefine.clazzName})](@RequestBody [(${clazzDefine.clazzName})]Request.Delete[(${clazzDefine.clazzName})]Request request) {
+        return UrfccDelegate.execute(request, request1 -> {
+            [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.delete[(${clazzDefine.clazzName})](request1);
+            return new CommonResponseVo();
+        }, request.getCurrentUserId(), "管理后台-删除[(${clazzDefine.clazzComment})]");
+    }
+
+    @PostMapping("[(${clazzDefine.clazzName})]/page[(${clazzDefine.clazzName})]Admin")
+    public Object page[(${clazzDefine.clazzName})]Admin(@RequestBody [(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request) {
+        return UrfccDelegate.execute(request, request1 -> {
+            IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> response =  [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.page[(${clazzDefine.clazzName})]Admin(request1);
+            return new CommonResponseVo(response);
+        }, request.getCurrentUserId(), "管理后台-分页查询[(${clazzDefine.clazzComment})]");
+    }
+
+}

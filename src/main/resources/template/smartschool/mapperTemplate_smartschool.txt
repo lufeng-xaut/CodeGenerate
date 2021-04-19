@@ -1,0 +1,26 @@
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * [(${clazzDefine.clazzComment})]
+ *
+ * @author lufeng
+ */
+@Mapper
+public interface [(${clazzDefine.clazzName})]Mapper {
+    [(${clazzDefine.clazzName})] selectByPrimaryKey(String id);
+
+    int insertSelective([(${clazzDefine.clazzName})] model);
+
+    void updateByPrimaryKey([(${clazzDefine.clazzName})] model);
+
+    void deleteByPrimaryKey(String id);
+
+    int batchDelete(@Param("ids") List<String> idList);
+
+    int batchAdd(@Param("list") List<[(${clazzDefine.clazzName})]> list);
+
+    @Update("update [(${mysqlTable.tableName})] set state = #{state} where id = #{id} ")
+    void updateState(@Param("id") String id, @Param("state") FantState state);
+
+}

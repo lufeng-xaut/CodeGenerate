@@ -1,0 +1,60 @@
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.beans.BeanUtils;
+
+/**
+ * [(${clazzDefine.clazzComment})]分页查询Bo
+ *
+ * @author lufeng
+ */
+public class [(${clazzDefine.clazzName})]PageQueryBo {
+    /**
+     * 第几页
+     */
+    private Integer pageNo;
+
+    /**
+     * 每页大小
+     */
+    private Integer pageSize;
+
+	[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+    /**
+    * [(${javaField.comment})]
+    */
+    private [(${javaField.type})] [(${javaField.name})];
+
+    [/]
+
+    /**
+     * 快捷搜索
+     */
+    private String searchKey;
+
+    [# th:each="javaField : ${clazzDefine.javaFieldList}"]
+    public [(${javaField.type})] get[(${#strings.capitalize(javaField.name)})](){
+        return [(${javaField.name})];
+    }
+
+    public void set[(${#strings.capitalize(javaField.name)})]([(${javaField.type})] [(${javaField.name})]){
+        this.[(${javaField.name})] = [(${javaField.name})];
+    }
+
+    [/]
+
+    public String getSearchKey() {
+        return searchKey;
+    }
+
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey;
+    }
+
+	@Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+	
+}	
+	
+	

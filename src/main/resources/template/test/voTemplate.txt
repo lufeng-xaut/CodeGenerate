@@ -1,0 +1,23 @@
+/**
+ * [(${clazzDefine.clazzComment})]
+ * @author lufeng
+ */
+@ApiModel("[(${clazzDefine.clazzComment})]")
+public class [(${clazzDefine.clazzName})]Vo implements Serializable {
+	[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+    @ApiModelProperty(value = "[(${javaField.comment})]", dataType = "[(${javaField.type})]")
+    private [(${javaField.type})] [(${javaField.name})];
+
+    [/]
+
+	[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+    public [(${javaField.type})] get[(${#strings.capitalize(javaField.name)})](){
+        return [(${javaField.name})];
+    }
+
+    public void set[(${#strings.capitalize(javaField.name)})]([(${javaField.type})] [(${javaField.name})]){
+        this.[(${javaField.name})] = [(${javaField.name})];
+    }
+
+    [/]
+}

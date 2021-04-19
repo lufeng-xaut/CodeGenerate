@@ -1,0 +1,21 @@
+@ApiModelProperty(name = "id" , value = "主键")
+private String id;
+@ApiModelProperty(name = "firmId" , value = "学校id")
+private String firmId;
+@ApiModelProperty(name = "type" , value = "意见种类")
+private AdviceType type;
+@ApiModelProperty(name = "title" , value = "标题")
+private String title;
+@ApiModelProperty(name = "content" , value = "说明情况")
+private String content;
+@ApiModelProperty(name = "happenTime" , value = "发生时间")
+private LocalDateTime happenTime;
+@ApiModelProperty(name = "createdAt" , value = "创建时间")
+private LocalDateTime createdAt;
+@ApiModelProperty(name = "createdBy" , value = "创建人id")
+private String createdBy;
+@ApiModelProperty(name = "createdByName" , value = "创建人名称")
+private String createdByName;
+
+
+

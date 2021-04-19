@@ -1,0 +1,22 @@
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * [(${clazzDefine.clazzComment})]
+ *
+ * @author lufeng
+ */
+@Mapper
+public interface [(${clazzDefine.clazzName})]Mapper extends BaseMapper<[(${clazzDefine.clazzName})]> {
+
+    int batchDelete(@Param("ids") List<String> idList);
+
+    int batchAdd(@Param("list") List<[(${clazzDefine.clazzName})]> list);
+
+    @Update("update [(${mysqlTable.tableName})] set state = #{state} where id = #{id} ")
+    void updateState(@Param("id") String id, @Param("state") FantState state);
+
+    List<[(${clazzDefine.clazzName})]> page(@Param("queryBo") [(${clazzDefine.clazzName})]PageQueryBo queryBo);
+
+    List<[(${clazzDefine.clazzName})]> findByCondition(@Param("queryBo") [(${clazzDefine.clazzName})]QueryBo queryBo);
+}

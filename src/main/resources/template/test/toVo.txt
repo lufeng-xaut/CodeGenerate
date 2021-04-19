@@ -1,0 +1,6 @@
+[(${clazzDefine.clazzName})]Vo [(${#strings.unCapitalize(clazzDefine.clazzName)})]Vo = new [(${clazzDefine.clazzName})]Vo();
+[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+[(${#strings.unCapitalize(clazzDefine.clazzName)})]Vo.set[(${#strings.capitalize(javaField.name)})]([(${#strings.unCapitalize(clazzDefine.clazzName)})].get[(${#strings.capitalize(javaField.name)})]());
+[/]
+
+

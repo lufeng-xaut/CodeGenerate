@@ -1,0 +1,39 @@
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.beans.BeanUtils;
+
+/**
+ * [(${clazzDefine.clazzComment})]
+ *
+ * @author lufeng
+ */
+public class [(${clazzDefine.clazzName})]EditBo {
+	[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+    /**
+    * [(${javaField.comment})]
+    */
+    private [(${javaField.type})] [(${javaField.name})];
+    [/]
+    [# th:each="javaField : ${clazzDefine.javaFieldList}"]
+    public [(${javaField.type})] get[(${#strings.capitalize(javaField.name)})](){
+        return [(${javaField.name})];
+    }
+
+    public void set[(${#strings.capitalize(javaField.name)})]([(${javaField.type})] [(${javaField.name})]){
+        this.[(${javaField.name})] = [(${javaField.name})];
+    }
+
+    [/]
+	@Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+	public [(${clazzDefine.clazzName})] toModel() {
+        [(${clazzDefine.clazzName})] model = new [(${clazzDefine.clazzName})]();
+        BeanUtils.copyProperties(this, model);
+        return model;
+    }
+}	
+	
+	

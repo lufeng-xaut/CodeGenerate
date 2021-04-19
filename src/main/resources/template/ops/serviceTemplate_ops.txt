@@ -1,0 +1,35 @@
+/**
+ * [(${tableModel.tableComment})]
+ *
+ * @author lufeng
+ */
+@Service
+@Transactional
+public class [(${tableModel.tableJavaName})]Service extends BatchTransferData<[(${tableModel.tableJavaName})],Account> {
+    @Autowired
+    private [(${tableModel.tableJavaName})]Mapper currentMapper;
+    @Autowired
+    private AccountMapper distMapper;
+
+    @Override
+    public Integer countSource() {
+        return currentMapper.count();
+    }
+
+    @Override
+    public Account switchModel([(${tableModel.tableJavaName})] source) {
+
+        return null;
+    }
+
+    @Override
+    public List<[(${tableModel.tableJavaName})]> findLimit(Integer offset, Integer size) {
+        return currentMapper.findLimit(offset,size);
+    }
+
+    @Override
+    public Integer batchAddDist(List<Account> distList) {
+        return distMapper.batchAdd(distList);
+    }
+
+}

@@ -1,0 +1,53 @@
+     * 主键
+     
+    private String id;
+    
+     * 学校id
+     
+    private String firmId;
+    
+     * 年级id
+     
+    private String gradeId;
+    
+     * logo
+     
+    private String logo;
+    
+     * 名称
+     
+    private String name;
+    
+     * 课室id
+     
+    private String roomId;
+    
+     * 学期id
+     
+    private String termId;
+    
+     * 教学楼id
+     
+    private String buildingId;
+
+    
+     * 学段
+     
+    private String stageId;
+
+    
+     * 班级状态
+     
+    private ClazzStatus status;
+    
+     * 上一学期班级id
+     
+    private String prevclazzId;
+
+*clazzNumber
+    private Integer clazzNumber;
+
+	
+	 * 希沃id
+	 
+	private String seewoId;

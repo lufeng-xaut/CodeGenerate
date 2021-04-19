@@ -1,0 +1,44 @@
+
+import lombok.Getter;
+import org.springframework.util.StringUtils;
+
+
+public enum Em[(${clazzDefine.clazzName})] {
+
+    /**
+     * xxx
+     */
+    [(${#strings.toUpperCase(clazzDefine.clazzName)})]_STATUS_1(1, "xxxxx"),
+    [(${#strings.toUpperCase(clazzDefine.clazzName)})]_STATUS_2(2, "xxxxx"),
+    [(${#strings.toUpperCase(clazzDefine.clazzName)})]_STATUS_3(3, "xxxxx"),
+
+
+
+
+    ;
+
+    @Getter
+    private final Integer value;
+    @Getter
+    private final String name;
+
+    Em[(${clazzDefine.clazzName})](Integer value, String name) {
+    	this.value = value;
+    	this.name = name;
+    }
+
+
+
+	public static String get[(${clazzDefine.clazzName})]StatusName(Integer value) {
+		if (StringUtils.isEmpty(value)) {
+			return  "";
+		}
+		for (EmAccount emObj : EmAccount.values()) {
+			if (emObj.getValue().intValue() == value && emObj.toString().contains("[(${#strings.toUpperCase(clazzDefine.clazzName)})]_STATUS_")) {
+				return emObj.getName();
+			}
+		}
+		return "";
+	}
+
+}

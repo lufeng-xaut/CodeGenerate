@@ -1,0 +1,35 @@
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+
+/**
+ * <p>
+ * [(${clazzDefine.clazzComment})]
+ * </p>
+ *
+ * @author
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("st_policy")
+public class [(${clazzDefine.clazzName})] extends Model<[(${clazzDefine.clazzName})]> {
+	[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+	/**
+	* [(${javaField.comment})]
+	*/
+	private [(${javaField.type})] [(${javaField.name})];
+	[/]
+}
+
+
+
+

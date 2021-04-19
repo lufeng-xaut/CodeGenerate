@@ -1,0 +1,23 @@
+
+[# th:each="item : ${list}"]
+[(${item.name})]
+[/]
+
+[# th:each="item : ${list}"]
+[(${item.type})]
+[/]
+
+[# th:each="item : ${list}"]
+[(${item.comment})]
+[/]
+
+
+
+
+
+
+
+
+
+
+

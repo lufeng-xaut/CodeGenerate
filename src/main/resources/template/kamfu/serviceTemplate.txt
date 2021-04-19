@@ -1,0 +1,69 @@
+/**
+ * [(${clazzDefine.clazzComment})]
+ *
+ * @author lufeng
+ */
+@Service
+@Transactional
+public class [(${clazzDefine.clazzName})]Service extends BaseService<[(${clazzDefine.clazzName})]> {
+    @Autowired
+    private [(${clazzDefine.clazzName})]Mapper currentMapper;
+
+    @Override
+    protected BaseMapper<[(${clazzDefine.clazzName})]> getMapper() {
+        return currentMapper;
+    }
+
+    @Override
+    public [(${clazzDefine.clazzName})] findById(String id) {
+        FantAssert.isTrue(StringUtils.isNotBlank(id), "id不能为空");
+        return super.findById(id);
+    }
+
+    public [(${clazzDefine.clazzName})] add([(${clazzDefine.clazzName})]EditBo editBo) {
+        [(${clazzDefine.clazzName})] editModel = editBo.toModel();
+        [(${clazzDefine.clazzName})] model = super.add(editModel);
+        return model;
+    }
+
+    public [(${clazzDefine.clazzName})] edit([(${clazzDefine.clazzName})]EditBo editBo) {
+        [(${clazzDefine.clazzName})] model = this.findById(editBo.getId());
+        FantAssert.notNull(model, "当前记录已删除，请刷新");
+        [(${clazzDefine.clazzName})] editModel = editBo.toModel();
+        [(${clazzDefine.clazzName})] newModel = super.edit(editModel);
+        return newModel;
+    }
+
+    @Override
+    public void delete(String id) {
+        FantAssert.isTrue(StringUtils.isNotBlank(id), "id不能为空!");
+        super.delete(id);
+    }
+
+    public int batchDelete(List<String> idList) {
+        return currentMapper.batchDelete(idList);
+    }
+
+    public int batchAdd(List<[(${clazzDefine.clazzName})]> list) {
+        if(list == null || list.isEmpty()){
+            return 0;
+        }
+        return currentMapper.batchAdd(list);
+    }
+
+    public FantPage<[(${clazzDefine.clazzName})]> page([(${clazzDefine.clazzName})]PageQueryBo queryBo) {
+        PageHelper.startPage(queryBo.getPageNo(), queryBo.getPageSize());
+        List<[(${clazzDefine.clazzName})]> boList = currentMapper.page(queryBo);
+        PageInfo<[(${clazzDefine.clazzName})]> pageInfo = PageInfo.of(boList);
+        return new FantPage<>(pageInfo.getList(), pageInfo.getTotal(), pageInfo.getPageSize(), pageInfo.getPageNum());
+    }
+
+    public void enable(String id) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.updateState(id,FantState.ON);
+    }
+
+    public void disable(String id) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Mapper.updateState(id,FantState.OFF);
+    }
+
+}

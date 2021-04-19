@@ -1,0 +1,56 @@
+import com.gurfcc.urfcc.common.vo.BaseRequestDTO;
+import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+
+/**
+ * <p>
+ * [(${clazzDefine.clazzComment})]
+ * </p>
+ *
+ * @author
+ */
+@Data
+public class [(${clazzDefine.clazzName})]Request {
+    @Data
+    public static class Get[(${clazzDefine.clazzName})]Request extends BaseRequestDTO {
+        /**
+         * [(${clazzDefine.clazzComment})]id
+         */
+        @NotBlank(message = "[(${clazzDefine.clazzComment})]id不能为空")
+        private String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id;
+    }
+
+
+    @Data
+    public static class Save[(${clazzDefine.clazzName})]Request extends BaseRequestDTO {
+        [# th:each="javaField : ${clazzDefine.javaFieldList}"]
+        /**
+        * [(${javaField.comment})]
+        */
+        private [(${javaField.type})] [(${javaField.name})];
+        [/]
+    }
+
+    @Data
+    public static class Delete[(${clazzDefine.clazzName})]Request extends BaseRequestDTO {
+        /**
+         * [(${clazzDefine.clazzComment})]id
+         */
+        @NotBlank(message = "[(${clazzDefine.clazzComment})]id不能为空")
+        private String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id;
+    }
+
+    @Data
+    public static class Page[(${clazzDefine.clazzName})]Request extends BaseRequestDTO {
+        private Integer pageIndex = 1;
+        private Integer pageSize = 10;
+        private String searchKey;
+
+    }
+
+
+}

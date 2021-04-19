@@ -1,0 +1,43 @@
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.beans.BeanUtils;
+
+/**
+ * [(${clazzDefine.clazzComment})]
+ *
+ * @author lufeng
+ */
+@ApiModel(value = "[(${clazzDefine.clazzComment})]编辑vo")
+public class [(${clazzDefine.clazzName})]EditVo {
+	[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+	@ApiModelProperty(value = "[(${javaField.comment})]")
+	private [(${javaField.type})] [(${javaField.name})];
+	 
+	[/]
+	[# th:each="javaField : ${clazzDefine.javaFieldList}"]
+    public [(${javaField.type})] get[(${#strings.capitalize(javaField.name)})](){
+        return [(${javaField.name})];
+    }
+
+    public void set[(${#strings.capitalize(javaField.name)})]([(${javaField.type})] [(${javaField.name})]){
+        this.[(${javaField.name})] = [(${javaField.name})];
+    }
+
+    [/]
+
+	@Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    public [(${clazzDefine.clazzName})]EditBo toBo() {
+        [(${clazzDefine.clazzName})]EditBo bo = new [(${clazzDefine.clazzName})]EditBo();
+        BeanUtils.copyProperties(this, bo);
+        bo.setCreatedAt(LocalDateTime.now());
+        bo.setUpdatedAt(LocalDateTime.now());
+        return bo;
+    }
+	
+}	
+	
+	

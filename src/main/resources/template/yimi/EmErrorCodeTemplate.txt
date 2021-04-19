@@ -1,0 +1,51 @@
+
+/**
+ * [(${clazzDefine.clazzComment})]错误码，前两位代表模块，后四位代码业务
+ */
+public enum Em[(${clazzDefine.clazzName})]ErrorCode {
+
+    /**
+     * xx0000=
+     */
+    [(${#strings.toUpperCase(clazzDefine.clazzName)})]_xx0000("xx0000", "数据信息不存在"),
+    [(${#strings.toUpperCase(clazzDefine.clazzName)})]_xx0001("xx0001", "数据唯一id不能为空"),
+
+
+
+
+    ;
+
+    private String code;
+    private String msg;
+
+    // 构造方法
+    Em[(${clazzDefine.clazzName})]ErrorCode(String code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    /**
+     * 通过cod获取msg
+     *
+     * @param code
+     * @return
+     */
+    public static String getMsgByCode(String code) {
+        Em[(${clazzDefine.clazzName})]ErrorCode[] users = values();
+        for (Em[(${clazzDefine.clazzName})]ErrorCode user : users) {
+            if (user.getCode().equals(code)) {
+                return user.getMsg();
+            }
+        }
+        return null;
+    }
+
+}
