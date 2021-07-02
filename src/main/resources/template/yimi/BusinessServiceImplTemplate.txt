@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 
 @Slf4j
@@ -16,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${clazzDefine.clazzName})]BusinessService {
     @Autowired
     private I[(${clazzDefine.clazzName})]Service [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service;
+//    @Autowired
+//    private [(${clazzDefine.clazzName})]BusinessMapper [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessMapper;
 
     /**
      * 根据id查询[(${clazzDefine.clazzComment})]
@@ -41,9 +44,9 @@ public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${claz
      * @return
      */
     @Override
-    public [(${clazzDefine.clazzName})]Response.Save[(${clazzDefine.clazzName})]Response save[(${clazzDefine.clazzName})]([(${clazzDefine.clazzName})]Request.Save[(${clazzDefine.clazzName})]Request request) {
+    public [(${clazzDefine.clazzName})]Response.Put[(${clazzDefine.clazzName})]Response put[(${clazzDefine.clazzName})]([(${clazzDefine.clazzName})]Request.Put[(${clazzDefine.clazzName})]Request request) {
         String currentUserId = request.getCurrentUserId();
-        String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = request1.get[(${clazzDefine.clazzName})]Id();
+        String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = request.get[(${clazzDefine.clazzName})]Id();
 
         [(${clazzDefine.clazzName})] [(${#strings.unCapitalize(clazzDefine.clazzName)})] = new [(${clazzDefine.clazzName})]();
         BeanUtils.copyProperties(request, [(${#strings.unCapitalize(clazzDefine.clazzName)})]);
@@ -62,7 +65,7 @@ public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${claz
             [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.updateById([(${#strings.unCapitalize(clazzDefine.clazzName)})]);
         }
 
-        [(${clazzDefine.clazzName})]Response.Save[(${clazzDefine.clazzName})]Response response = new [(${clazzDefine.clazzName})]Response.Save[(${clazzDefine.clazzName})]Response();
+        [(${clazzDefine.clazzName})]Response.Put[(${clazzDefine.clazzName})]Response response = new [(${clazzDefine.clazzName})]Response.Put[(${clazzDefine.clazzName})]Response();
         BeanUtils.copyProperties([(${#strings.unCapitalize(clazzDefine.clazzName)})], response);
         return response;
     }
@@ -76,7 +79,7 @@ public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${claz
     @Override
     public void delete[(${clazzDefine.clazzName})]([(${clazzDefine.clazzName})]Request.Delete[(${clazzDefine.clazzName})]Request request) {
          String currentUserId = request.getCurrentUserId();
-         String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = request1.get[(${clazzDefine.clazzName})]Id();
+         String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = request.get[(${clazzDefine.clazzName})]Id();
 
         [(${clazzDefine.clazzName})] [(${#strings.unCapitalize(clazzDefine.clazzName)})] = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.getById([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
         if ([(${#strings.unCapitalize(clazzDefine.clazzName)})] == null) {
@@ -98,8 +101,9 @@ public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${claz
     @Override
     public IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> page[(${clazzDefine.clazzName})]Admin([(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request1) {
         Page<Object> pageParam = new Page<>(request1.getPageIndex(), request1.getPageSize());
-        IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> result = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessMapper.page[(${clazzDefine.clazzName})]Admin(pageParam, request1);
-        return result;
+//        IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> result = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessMapper.page[(${clazzDefine.clazzName})]Admin(pageParam, request1);
+//        return result;
+        return null;
     }
 
 

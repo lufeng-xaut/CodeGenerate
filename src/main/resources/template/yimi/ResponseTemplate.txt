@@ -22,7 +22,7 @@ public class [(${clazzDefine.clazzName})]Response {
 
 
     @Data
-    public static class Save[(${clazzDefine.clazzName})]Response {
+    public static class Put[(${clazzDefine.clazzName})]Response {
         /**
          * [(${clazzDefine.clazzComment})]id
          */

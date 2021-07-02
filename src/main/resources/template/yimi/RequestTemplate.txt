@@ -26,7 +26,7 @@ public class [(${clazzDefine.clazzName})]Request {
 
 
     @Data
-    public static class Save[(${clazzDefine.clazzName})]Request extends BaseRequestDTO {
+    public static class Put[(${clazzDefine.clazzName})]Request extends BaseRequestDTO {
         [# th:each="javaField : ${clazzDefine.javaFieldList}"]
         /**
         * [(${javaField.comment})]

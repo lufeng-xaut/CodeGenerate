@@ -15,7 +15,7 @@ public interface [(${clazzDefine.clazzName})]BusinessService {
      * @param request
      * @return
      */
-    [(${clazzDefine.clazzName})]Response.Save[(${clazzDefine.clazzName})]Response save[(${clazzDefine.clazzName})]([(${clazzDefine.clazzName})]Request.Save[(${clazzDefine.clazzName})]Request request);
+    [(${clazzDefine.clazzName})]Response.Put[(${clazzDefine.clazzName})]Response put[(${clazzDefine.clazzName})]([(${clazzDefine.clazzName})]Request.Put[(${clazzDefine.clazzName})]Request request);
 
     /**
      * 删除[(${clazzDefine.clazzComment})]

@@ -33,7 +33,7 @@ public enum Em[(${clazzDefine.clazzName})] {
 		if (StringUtils.isEmpty(value)) {
 			return  "";
 		}
-		for (EmAccount emObj : EmAccount.values()) {
+		for (Em[(${clazzDefine.clazzName})] emObj : Em[(${clazzDefine.clazzName})].values()) {
 			if (emObj.getValue().intValue() == value && emObj.toString().contains("[(${#strings.toUpperCase(clazzDefine.clazzName)})]_STATUS_")) {
 				return emObj.getName();
 			}
