@@ -4,9 +4,8 @@ import org.springframework.util.StringUtils;
 
 
 public enum Em[(${clazzDefine.clazzName})] {
-
     /**
-     * xxx
+     * xxxxx
      */
     [(${#strings.toUpperCase(clazzDefine.clazzName)})]_STATUS_1(1, "xxxxx"),
     [(${#strings.toUpperCase(clazzDefine.clazzName)})]_STATUS_2(2, "xxxxx"),
