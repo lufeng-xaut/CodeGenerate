@@ -1,0 +1,15 @@
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * [(${clazzDefine.clazzComment})]
+ *
+ * @author lufeng
+ */
+@Mapper
+public interface [(${clazzDefine.clazzName})]BusinessMapper {
+
+    IPage<[(${clazzDefine.clazzName})]Response.Page[(${clazzDefine.clazzName})]Response> get[(${clazzDefine.clazzName})]Page(Page<[(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request> page,
+                                                    @Param("request") [(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request);
+
+}

@@ -23,20 +23,20 @@ public class [(${clazzDefine.clazzName})]Controller {
     private [(${clazzDefine.clazzName})]BusinessService [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService;
 
     /**
-     * 管理后台-根据id查询[(${clazzDefine.clazzComment})]
+     * 前台-根据id查询[(${clazzDefine.clazzComment})]
      * @param request
      * @return
      */
-    @GetMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/findById")
-    public Object findById(@ModelAttribute [(${clazzDefine.clazzName})]Request.Get[(${clazzDefine.clazzName})]Request request) {
+    @GetMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/get[(${clazzDefine.clazzName})]")
+    public Object get[(${clazzDefine.clazzName})](@ModelAttribute [(${clazzDefine.clazzName})]Request.Get[(${clazzDefine.clazzName})]Request request) {
         return UrfccDelegate.execute(request, request1 -> {
-            [(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response response = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.getById(request1.get[(${clazzDefine.clazzName})]Id());
+            [(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response response = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.get[(${clazzDefine.clazzName})](request1);
             return new CommonResponseVo(response);
-        }, request.getCurrentUserId(), "管理后台-根据id查询[(${clazzDefine.clazzComment})]");
+        }, request.getCurrentUserId(), "前台-根据id查询[(${clazzDefine.clazzComment})]");
     }
 
     /**
-     * 管理后台-新增/编辑[(${clazzDefine.clazzComment})]
+     * 前台-新增/编辑[(${clazzDefine.clazzComment})]
      * @param request
      * @return
      */
@@ -46,11 +46,11 @@ public class [(${clazzDefine.clazzName})]Controller {
         return UrfccDelegate.execute(request, request1 -> {
             [(${clazzDefine.clazzName})]Response.Put[(${clazzDefine.clazzName})]Response response = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.put[(${clazzDefine.clazzName})](request1);
             return new CommonResponseVo(response);
-        }, request.getCurrentUserId(), "管理后台-新增/编辑[(${clazzDefine.clazzComment})]");
+        }, request.getCurrentUserId(), "前台-新增/编辑[(${clazzDefine.clazzComment})]");
     }
 
     /**
-     * 管理后台-删除[(${clazzDefine.clazzComment})]
+     * 前台-删除[(${clazzDefine.clazzComment})]
      * @param request
      * @return
      */
@@ -59,20 +59,20 @@ public class [(${clazzDefine.clazzName})]Controller {
         return UrfccDelegate.execute(request, request1 -> {
             [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.delete[(${clazzDefine.clazzName})](request1);
             return new CommonResponseVo();
-        }, request.getCurrentUserId(), "管理后台-删除[(${clazzDefine.clazzComment})]");
+        }, request.getCurrentUserId(), "前台-删除[(${clazzDefine.clazzComment})]");
     }
 
     /**
-     * 管理后台-分页查询[(${clazzDefine.clazzComment})]
+     * 前台-分页查询[(${clazzDefine.clazzComment})]
      * @param request
      * @return
      */
-    @PostMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/page[(${clazzDefine.clazzName})]Admin")
-    public Object page[(${clazzDefine.clazzName})]Admin(@RequestBody [(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request) {
+    @PostMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/get[(${clazzDefine.clazzName})]Page")
+    public Object get[(${clazzDefine.clazzName})]Page(@RequestBody [(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request) {
         return UrfccDelegate.execute(request, request1 -> {
-            IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> response =  [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.page[(${clazzDefine.clazzName})]Admin(request1);
+            IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> response =  [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.get[(${clazzDefine.clazzName})]Page(request1);
             return new CommonResponseVo(response);
-        }, request.getCurrentUserId(), "管理后台-分页查询[(${clazzDefine.clazzComment})]");
+        }, request.getCurrentUserId(), "前台-分页查询[(${clazzDefine.clazzComment})]");
     }
 
 }

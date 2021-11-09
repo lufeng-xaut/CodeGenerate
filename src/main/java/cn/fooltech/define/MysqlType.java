@@ -70,7 +70,7 @@ public final class MysqlType {
             add("mediumblob");
             add("mediumtext");
             add("longblob");
-            add("lontext");
+            add("longtext");
         }
     };
 
@@ -95,6 +95,7 @@ public final class MysqlType {
 //            put("tinytext","");
             put("blob", "byte[]");
             put("text", "String");
+            put("longtext", "String");
 //            put("mediumblob","");
 //            put("mediumtext","");
 //            put("longblob","");

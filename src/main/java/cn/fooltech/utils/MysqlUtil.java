@@ -54,7 +54,9 @@ public class MysqlUtil {
     /**
      * 注：
      * 1）不能按空格分割，因为注释里可能也带有空格
-     *
+     * 优化：1）先提取子串把注释提取出来 `edit_time` datetime DEFAULT NULL, ',",`
+     * 2）再按空格分割，,最多就这3个符号，过滤掉，分别取1，2个字段和注释
+     * 有个问题，如果没有"`"符号，怎么判断列从哪行开始
      * @param row
      */
     private static void rowParse(String row) {

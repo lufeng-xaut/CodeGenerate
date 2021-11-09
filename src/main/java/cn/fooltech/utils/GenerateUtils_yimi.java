@@ -43,6 +43,7 @@ public class GenerateUtils_yimi {
         generateController(projectName, moduleName);
         generateEmErrorCode(projectName, moduleName);
         generateEm(projectName, moduleName);
+        generateBusinessMapper(projectName, moduleName);
 //        generateMapper(projectName, moduleName);
 //        generateXml(projectName, moduleName);
 //        generateService(projectName, moduleName);
@@ -106,6 +107,12 @@ public class GenerateUtils_yimi {
     private static void generateMapper(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "Mapper.java"));
         String template = GenerateUtils.class.getResource("/template/smartschool/mapperTemplate_smartschool.txt").getPath();
+        ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
+    }
+
+    private static void generateBusinessMapper(String projectName, String moduleName) throws IOException {
+        FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "BusinessMapper.java"));
+        String template = GenerateUtils.class.getResource("/template/yimi/BusinessMapper.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 

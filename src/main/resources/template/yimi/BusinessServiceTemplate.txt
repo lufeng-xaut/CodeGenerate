@@ -4,10 +4,10 @@ public interface [(${clazzDefine.clazzName})]BusinessService {
     /**
      * 根据id查询[(${clazzDefine.clazzComment})]
      *
-     * @param id
+     * @param request
      * @return
      */
-    [(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response getById(String id);
+    [(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response get[(${clazzDefine.clazzName})]([(${clazzDefine.clazzName})]Request.Get[(${clazzDefine.clazzName})]Request request);
 
     /**
      * 新增/编辑[(${clazzDefine.clazzComment})]
@@ -31,7 +31,7 @@ public interface [(${clazzDefine.clazzName})]BusinessService {
      * @param request1
      * @return
      */
-    IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> page[(${clazzDefine.clazzName})]Admin([(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request1);
+    IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> get[(${clazzDefine.clazzName})]Page([(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request1);
 
 }
 

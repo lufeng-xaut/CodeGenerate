@@ -23,12 +23,13 @@ public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${claz
     /**
      * 根据id查询[(${clazzDefine.clazzComment})]
      *
-     * @param id
+     * @param request
      * @return
      */
     @Override
-    public [(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response getById(String id) {
-        [(${clazzDefine.clazzName})] [(${#strings.unCapitalize(clazzDefine.clazzName)})] = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.getById(id);
+    public [(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response get[(${clazzDefine.clazzName})]([(${clazzDefine.clazzName})]Request.Get[(${clazzDefine.clazzName})]Request request) {
+        String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = request.get[(${clazzDefine.clazzName})]Id();
+        [(${clazzDefine.clazzName})] [(${#strings.unCapitalize(clazzDefine.clazzName)})] = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.getById([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
         if ([(${#strings.unCapitalize(clazzDefine.clazzName)})] == null) {
             return null;
         }
@@ -48,25 +49,27 @@ public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${claz
         String currentUserId = request.getCurrentUserId();
         String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = request.get[(${clazzDefine.clazzName})]Id();
 
-        [(${clazzDefine.clazzName})] [(${#strings.unCapitalize(clazzDefine.clazzName)})] = new [(${clazzDefine.clazzName})]();
-        BeanUtils.copyProperties(request, [(${#strings.unCapitalize(clazzDefine.clazzName)})]);
-
-        if (StringUtils.isBlank([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id)) {
-            [(${#strings.unCapitalize(clazzDefine.clazzName)})].set[(${clazzDefine.clazzName})]Id(UUIDUtil.getOriginalUUID());
-            [(${#strings.unCapitalize(clazzDefine.clazzName)})].setCreateUser(currentUserId);
-            [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.save([(${#strings.unCapitalize(clazzDefine.clazzName)})]);
-        } else {
-            [(${clazzDefine.clazzName})] old[(${clazzDefine.clazzName})] = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.getById(request.get[(${clazzDefine.clazzName})]Id());
-            if (old[(${clazzDefine.clazzName})] == null) {
-                throw new UrfccException(Em[(${clazzDefine.clazzName})]ErrorCode.[(${#strings.toUpperCase(clazzDefine.clazzName)})]_xx0000.getMsg());
+        if (StringUtils.isNotBlank([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id)){
+            [(${clazzDefine.clazzName})] [(${#strings.unCapitalize(clazzDefine.clazzName)})] = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.getById([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
+            if ([(${#strings.unCapitalize(clazzDefine.clazzName)})] == null) {
+                throw new UrfccException(EmQuizAnswerErrorCode.QUIZ_ANSWER_1050000.getMsg());
             }
-            [(${#strings.unCapitalize(clazzDefine.clazzName)})].set[(${clazzDefine.clazzName})]Id([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
-            [(${#strings.unCapitalize(clazzDefine.clazzName)})].setEditUser(currentUserId);
-            [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.updateById([(${#strings.unCapitalize(clazzDefine.clazzName)})]);
+        }
+
+        [(${clazzDefine.clazzName})] update[(${clazzDefine.clazzName})] = new [(${clazzDefine.clazzName})]();
+        BeanUtils.copyProperties(request, update[(${clazzDefine.clazzName})]);
+        if (StringUtils.isBlank([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id)) {
+            update[(${clazzDefine.clazzName})].set[(${clazzDefine.clazzName})]Id(UUIDUtil.getOriginalUUID());
+            update[(${clazzDefine.clazzName})].setCreateUser(currentUserId);
+            [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.save(update[(${clazzDefine.clazzName})]);
+        } else {
+            update[(${clazzDefine.clazzName})].set[(${clazzDefine.clazzName})]Id([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
+            update[(${clazzDefine.clazzName})].setEditUser(currentUserId);
+            [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.updateById(update[(${clazzDefine.clazzName})]);
         }
 
         [(${clazzDefine.clazzName})]Response.Put[(${clazzDefine.clazzName})]Response response = new [(${clazzDefine.clazzName})]Response.Put[(${clazzDefine.clazzName})]Response();
-        BeanUtils.copyProperties([(${#strings.unCapitalize(clazzDefine.clazzName)})], response);
+        BeanUtils.copyProperties(update[(${clazzDefine.clazzName})], response);
         return response;
     }
 
@@ -88,7 +91,7 @@ public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${claz
         [(${clazzDefine.clazzName})] updateEntity = new [(${clazzDefine.clazzName})]();
         updateEntity.set[(${clazzDefine.clazzName})]Id([(${#strings.unCapitalize(clazzDefine.clazzName)})].get[(${clazzDefine.clazzName})]Id());
         updateEntity.setDeleteFlag(EmDeleteFlag.enableFlag_2.getValue());
-        [(${#strings.unCapitalize(clazzDefine.clazzName)})].setEditUser(currentUserId);
+        updateEntity.setEditUser(currentUserId);
         [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.updateById(updateEntity);
     }
 
@@ -99,9 +102,9 @@ public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${claz
      * @return
      */
     @Override
-    public IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> page[(${clazzDefine.clazzName})]Admin([(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request1) {
-        Page<Object> pageParam = new Page<>(request1.getPageIndex(), request1.getPageSize());
-//        IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> result = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessMapper.page[(${clazzDefine.clazzName})]Admin(pageParam, request1);
+    public IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> get[(${clazzDefine.clazzName})]Page([(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request request1) {
+        Page<[(${clazzDefine.clazzName})]Request.Page[(${clazzDefine.clazzName})]Request> pageParam = new Page<>(request1.getPageIndex(), request1.getPageSize());
+//        IPage<[(${clazzDefine.clazzName})]Response.Get[(${clazzDefine.clazzName})]Response> result = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessMapper.get[(${clazzDefine.clazzName})]Page(pageParam, request1);
 //        return result;
         return null;
     }

@@ -1,15 +1,14 @@
-CREATE TABLE `company_industry` (
-  `company_industry_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '主键',
-  `level` int DEFAULT NULL COMMENT '级别',
-  `industry_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '行业名称',
-  `parent_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '父级id',
-  `ordered` int DEFAULT NULL COMMENT '序号',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
-  `enable` tinyint DEFAULT '1' COMMENT '是否启用： 1启用 2停用',
-  `delete_flag` tinyint DEFAULT '1' COMMENT '是否删除：1未删除 2已删除',
-  `create_user` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人id',
+CREATE TABLE `quiz_question_master` (
+  `quiz_question_master_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '唯一id',
+  `user_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户ID',
+  `answer_num` int DEFAULT NULL COMMENT '回答数',
+  `apply_reason` text COLLATE utf8mb4_general_ci COMMENT '申请理由',
+  `status` tinyint DEFAULT '1' COMMENT '状态：1=待审核，2=已通过，3=不通过',
+  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `delete_flag` tinyint DEFAULT '1' COMMENT '是否删除，1=未删除，2=已删除',
+  `create_user` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) DEFAULT NULL COMMENT '创建时间',
-  `edit_user` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '编辑人id',
+  `edit_user` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '编辑人',
   `edit_time` datetime(3) DEFAULT NULL COMMENT '编辑时间',
-  PRIMARY KEY (`company_industry_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='企业行业信息';
+  PRIMARY KEY (`quiz_question_master_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='答主表';

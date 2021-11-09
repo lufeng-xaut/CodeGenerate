@@ -1,5 +1,6 @@
 
 import lombok.Data;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -9,9 +10,9 @@ import lombok.Data;
  * @author
  */
 @Data
-public class [(${clazzDefine.clazzName})]Response {
+public class [(${clazzDefine.clazzName})]Response implements Serializable {
     @Data
-    public static class Get[(${clazzDefine.clazzName})]Response {
+    public static class Get[(${clazzDefine.clazzName})]Response implements Serializable {
         [# th:each="javaField : ${clazzDefine.javaFieldList}"]
         /**
         * [(${javaField.comment})]
@@ -22,7 +23,7 @@ public class [(${clazzDefine.clazzName})]Response {
 
 
     @Data
-    public static class Put[(${clazzDefine.clazzName})]Response {
+    public static class Put[(${clazzDefine.clazzName})]Response implements Serializable {
         /**
          * [(${clazzDefine.clazzComment})]id
          */
