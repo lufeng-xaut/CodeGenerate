@@ -1,0 +1,20 @@
+
+import lombok.Data;
+import java.io.Serializable;
+
+/**
+ * <p>
+ * [(${clazzDefine.clazzComment})]
+ * </p>
+ *
+ * @author
+ */
+@Data
+public class Get[(${clazzDefine.clazzName})]Response implements Serializable {
+    [# th:each="javaField : ${clazzDefine.javaFieldList}"]
+    /**
+    * [(${javaField.comment})]
+    */
+    private [(${javaField.type})] [(${javaField.name})];
+    [/]
+}

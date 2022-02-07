@@ -1,0 +1,98 @@
+
+import com.yimibit.business.common.exception.BizException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.commons.lang3.StringUtils;
+
+
+@Slf4j
+@Service
+@Transactional
+public class [(${clazzDefine.clazzName})]BusinessServiceImpl implements [(${clazzDefine.clazzName})]BusinessService {
+    @Autowired
+    private I[(${clazzDefine.clazzName})]Service [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service;
+    @Autowired
+    private [(${clazzDefine.clazzName})]BusinessMapper [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessMapper;
+
+    /**
+     * 根据id查询[(${clazzDefine.clazzComment})]
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public Get[(${clazzDefine.clazzName})]Response get[(${clazzDefine.clazzName})](Get[(${clazzDefine.clazzName})]Request request, String currentUserId) {
+        String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = request.get[(${clazzDefine.clazzName})]Id();
+        [(${clazzDefine.clazzName})] [(${#strings.unCapitalize(clazzDefine.clazzName)})] = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.getById([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
+        if ([(${#strings.unCapitalize(clazzDefine.clazzName)})] == null) {
+            return null;
+        }
+        Get[(${clazzDefine.clazzName})]Response response = new Get[(${clazzDefine.clazzName})]Response();
+        BeanUtils.copyProperties([(${#strings.unCapitalize(clazzDefine.clazzName)})], response);
+        return response;
+    }
+
+    /**
+     * 新增/编辑[(${clazzDefine.clazzComment})]
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public String put[(${clazzDefine.clazzName})](Put[(${clazzDefine.clazzName})]Request request, String currentUserId) {
+        String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = request.get[(${clazzDefine.clazzName})]Id();
+
+        if (StringUtils.isNotBlank([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id)){
+            [(${clazzDefine.clazzName})] [(${#strings.unCapitalize(clazzDefine.clazzName)})] = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.getById([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
+            if ([(${#strings.unCapitalize(clazzDefine.clazzName)})] == null) {
+                throw new BizException(ErrorCode.CODE_20000, "");
+            }
+        }
+
+        [(${clazzDefine.clazzName})] update[(${clazzDefine.clazzName})] = new [(${clazzDefine.clazzName})]();
+        BeanUtils.copyProperties(request, update[(${clazzDefine.clazzName})]);
+        if (StringUtils.isBlank([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id)) {
+            update[(${clazzDefine.clazzName})].set[(${clazzDefine.clazzName})]Id(IdUtils.getIdStr());
+            update[(${clazzDefine.clazzName})].setCreateUser(currentUserId);
+            [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.save(update[(${clazzDefine.clazzName})]);
+        } else {
+            update[(${clazzDefine.clazzName})].set[(${clazzDefine.clazzName})]Id([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
+            update[(${clazzDefine.clazzName})].setEditUser(currentUserId);
+            [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.updateById(update[(${clazzDefine.clazzName})]);
+        }
+        return update[(${clazzDefine.clazzName})].get[(${clazzDefine.clazzName})]Id();
+    }
+
+    /**
+     * 删除[(${clazzDefine.clazzComment})]
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public void delete[(${clazzDefine.clazzName})](Delete[(${clazzDefine.clazzName})]Request request, String currentUserId) {
+         String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = request.get[(${clazzDefine.clazzName})]Id();
+
+        [(${clazzDefine.clazzName})] [(${#strings.unCapitalize(clazzDefine.clazzName)})] = [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.getById([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
+        if ([(${#strings.unCapitalize(clazzDefine.clazzName)})] == null) {
+            throw new BizException(ErrorCode.CODE_20000, "");
+        }
+        [(${clazzDefine.clazzName})] updateEntity = new [(${clazzDefine.clazzName})]();
+        updateEntity.set[(${clazzDefine.clazzName})]Id([(${#strings.unCapitalize(clazzDefine.clazzName)})].get[(${clazzDefine.clazzName})]Id());
+        updateEntity.setDeleteFlag(EmDeleteFlag.enableFlag_2.getValue());
+        updateEntity.setEditUser(currentUserId);
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]Service.updateById(updateEntity);
+    }
+
+    @Override
+    public PageInfo<Get[(${clazzDefine.clazzName})]Response> get[(${clazzDefine.clazzName})]Page(Page[(${clazzDefine.clazzName})]Request request, String currentUserId) {
+        PageHelper.startPage(request.getPage(), request.getSize());
+        List<Get[(${clazzDefine.clazzName})]Response> list = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessMapper.get[(${clazzDefine.clazzName})]Page(request);
+        return new PageInfo<>(list);
+    }
+
+}

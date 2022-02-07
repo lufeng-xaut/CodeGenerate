@@ -7,20 +7,12 @@ package cn.fooltech;
 
 import cn.fooltech.engine.ThymeleafService;
 import cn.fooltech.model.JavaField;
-import cn.fooltech.utils.GenerateUtils;
-import cn.fooltech.utils.GenerateUtils_yimi;
-import cn.fooltech.utils.TestUtil2;
+import cn.fooltech.utils.*;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * 类的功能描述
@@ -40,7 +32,8 @@ public class MainClass {
         String outDir = "e:/test";
         try {
 //            GenerateUtils_smartschool.generate(projectName, moduleName, outDir);
-            GenerateUtils_yimi.generate(projectName, moduleName, outDir);
+            GenerateUtils_Solar.generate(projectName, moduleName, outDir);
+//            GenerateUtils_gurfcc.generate(projectName, moduleName, outDir);
         } catch (IOException e) {
             e.printStackTrace();
         }

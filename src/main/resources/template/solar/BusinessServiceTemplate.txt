@@ -1,0 +1,38 @@
+
+
+public interface [(${clazzDefine.clazzName})]BusinessService {
+    /**
+     * 根据id查询[(${clazzDefine.clazzComment})]
+     *
+     * @param request
+     * @return
+     */
+    Get[(${clazzDefine.clazzName})]Response get[(${clazzDefine.clazzName})](Get[(${clazzDefine.clazzName})]Request request, String currentUserId);
+
+    /**
+     * 新增/编辑[(${clazzDefine.clazzComment})]
+     *
+     * @param request
+     * @return
+     */
+    String put[(${clazzDefine.clazzName})](Put[(${clazzDefine.clazzName})]Request request, String currentUserId);
+
+    /**
+     * 删除[(${clazzDefine.clazzComment})]
+     *
+     * @param request
+     * @return
+     */
+    void delete[(${clazzDefine.clazzName})](Delete[(${clazzDefine.clazzName})]Request request, String currentUserId);
+
+    /**
+     * 管理后台-分页查询[(${clazzDefine.clazzComment})]
+     *
+     * @param request
+     * @return
+     */
+    PageInfo<Get[(${clazzDefine.clazzName})]Response> get[(${clazzDefine.clazzName})]Page(Page[(${clazzDefine.clazzName})]Request request, String currentUserId);
+
+}
+
+

@@ -19,7 +19,7 @@ import java.io.IOException;
  *
  * @author lufeng
  */
-public class GenerateUtils_yimi {
+public class GenerateUtils_gurfcc {
     private static ClazzDefine clazzDefine;
     private static MysqlTable mysqlTable;
     private static ClazzWrap clazzWrap;
@@ -58,49 +58,49 @@ public class GenerateUtils_yimi {
 
     private static void generateRequest(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "Request.java"));
-        String template = GenerateUtils.class.getResource("/template/yimi/RequestTemplate.txt").getPath();
+        String template = GenerateUtils.class.getResource("/template/gurfcc/RequestTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generateResponse(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "Response.java"));
-        String template = GenerateUtils.class.getResource("/template/yimi/ResponseTemplate.txt").getPath();
+        String template = GenerateUtils.class.getResource("/template/gurfcc/ResponseTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generateBusinessService(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "BusinessService.java"));
-        String template = GenerateUtils.class.getResource("/template/yimi/BusinessServiceTemplate.txt").getPath();
+        String template = GenerateUtils.class.getResource("/template/gurfcc/BusinessServiceTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generateBusinessServiceImpl(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "BusinessServiceImpl.java"));
-        String template = GenerateUtils.class.getResource("/template/yimi/BusinessServiceImplTemplate.txt").getPath();
+        String template = GenerateUtils.class.getResource("/template/gurfcc/BusinessServiceImplTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generateController(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "Controller.java"));
-        String template = GenerateUtils.class.getResource("/template/yimi/ControllerTemplate.txt").getPath();
+        String template = GenerateUtils.class.getResource("/template/gurfcc/ControllerTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generateEmErrorCode(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + "Em" + clazzDefine.getClazzName() + "ErrorCode.java"));
-        String template = GenerateUtils.class.getResource("/template/yimi/EmErrorCodeTemplate.txt").getPath();
+        String template = GenerateUtils.class.getResource("/template/gurfcc/EmErrorCodeTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generateEm(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + "Em" + clazzDefine.getClazzName() + ".java"));
-        String template = GenerateUtils.class.getResource("/template/yimi/EmTemplate.txt").getPath();
+        String template = GenerateUtils.class.getResource("/template/gurfcc/EmTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generateBean(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + ".java"));
-        String template = GenerateUtils.class.getResource("/template/yimi/JavaBeanTemplate.txt").getPath();
+        String template = GenerateUtils.class.getResource("/template/gurfcc/JavaBeanTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
@@ -112,7 +112,7 @@ public class GenerateUtils_yimi {
 
     private static void generateBusinessMapper(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "BusinessMapper.java"));
-        String template = GenerateUtils.class.getResource("/template/yimi/BusinessMapper.txt").getPath();
+        String template = GenerateUtils.class.getResource("/template/gurfcc/BusinessMapper.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
@@ -124,7 +124,7 @@ public class GenerateUtils_yimi {
 
     private static void generateService(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "Service.java"));
-        String template = GenerateUtils_yimi.class.getResource("/template/smartschool/ServiceTemplate_smartschool.txt").getPath();
+        String template = GenerateUtils_gurfcc.class.getResource("/template/smartschool/ServiceTemplate_smartschool.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
@@ -136,25 +136,25 @@ public class GenerateUtils_yimi {
 
     private static void generateEditBo(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "EditBo.java"));
-        String template = GenerateUtils_yimi.class.getResource("/template/common/editBoTemplate.txt").getPath();
+        String template = GenerateUtils_gurfcc.class.getResource("/template/common/editBoTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generatePageQueryVo(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "PageQueryVo.java"));
-        String template = GenerateUtils_yimi.class.getResource("/template/common/PageQueryVoTemplate.txt").getPath();
+        String template = GenerateUtils_gurfcc.class.getResource("/template/common/PageQueryVoTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generatePageQueryBo(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + clazzDefine.getClazzName() + "PageQueryBo.java"));
-        String template = GenerateUtils_yimi.class.getResource("/template/common/PageQueryBoTemplate.txt").getPath();
+        String template = GenerateUtils_gurfcc.class.getResource("/template/common/PageQueryBoTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 
     private static void generateBatchDeleteQueryVo(String projectName, String moduleName) throws IOException {
         FileWriter writer = new FileWriter(new File(outDirectory + "/" + "BatchDeleteQueryVo.java"));
-        String template = GenerateUtils_yimi.class.getResource("/template/BatchDeleteQueryVoTemplate.txt").getPath();
+        String template = GenerateUtils_gurfcc.class.getResource("/template/BatchDeleteQueryVoTemplate.txt").getPath();
         ThymeleafService.process(template, writer, clazzDefine, mysqlTable, projectName, moduleName);
     }
 

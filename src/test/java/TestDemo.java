@@ -18,10 +18,10 @@ public class TestDemo {
 
     @Test
     public void unitTest() {
-
-
-        List<? extends Fruit> list2 = new ArrayList<Apple>();
-        List<? extends Fruit> list3 = new ArrayList<Jonathan>();
+        double a = 0.02;
+        double b = 0.03;
+        double c = b - a;
+        System.out.println(c);
 
 
     }

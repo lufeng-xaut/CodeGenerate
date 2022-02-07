@@ -1,0 +1,14 @@
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * [(${clazzDefine.clazzComment})]
+ *
+ * @author ybt
+ */
+@Mapper
+public interface [(${clazzDefine.clazzName})]BusinessMapper {
+
+    List<Get[(${clazzDefine.clazzName})]Response> get[(${clazzDefine.clazzName})]Page(@Param("request") Page[(${clazzDefine.clazzName})]Request request);
+
+}

@@ -1,14 +1,22 @@
-CREATE TABLE `quiz_question_master` (
-  `quiz_question_master_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '唯一id',
-  `user_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户ID',
-  `answer_num` int DEFAULT NULL COMMENT '回答数',
-  `apply_reason` text COLLATE utf8mb4_general_ci COMMENT '申请理由',
-  `status` tinyint DEFAULT '1' COMMENT '状态：1=待审核，2=已通过，3=不通过',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
-  `delete_flag` tinyint DEFAULT '1' COMMENT '是否删除，1=未删除，2=已删除',
-  `create_user` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(3) DEFAULT NULL COMMENT '创建时间',
-  `edit_user` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '编辑人',
-  `edit_time` datetime(3) DEFAULT NULL COMMENT '编辑时间',
-  PRIMARY KEY (`quiz_question_master_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='答主表';
+CREATE TABLE `station_assets_invest` (
+  `invest_id` varchar(36) COLLATE utf8mb4_general_ci NOT NULL COMMENT '投资id',
+  `assets_id` varchar(36) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '资产id',
+  `station_id` varchar(36) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '电站id',
+  `invest_amount` decimal(12,2) DEFAULT NULL COMMENT '投资金额',
+  `invest_user` varchar(36) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '投资用户id',
+  `status` int DEFAULT NULL COMMENT '前台状态：1待支付 2审核中 3筹资中 4建设中 5已完结',
+  `create_time` bigint DEFAULT NULL COMMENT '创建时间',
+  `create_user` varchar(36) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建者',
+  `update_time` bigint DEFAULT NULL COMMENT '修改时间',
+  `update_user` varchar(36) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '修改者',
+  `delete_flag` int DEFAULT '1' COMMENT '1正常 2删除',
+  `remittance_time` bigint DEFAULT NULL COMMENT '汇款单上传时间',
+  `cancel_status` int DEFAULT NULL COMMENT '取消原因 1众筹失败 2用户主动取消 3长期未支付，份额被解锁',
+  `cancel_time` bigint DEFAULT NULL COMMENT '取消时间',
+  `invest_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '投资编号',
+  `invest_status` int DEFAULT NULL COMMENT '后台状态：1待支付 2审核中 3审核通过 4审核不通过 5已取消 6已完成 7已超时 8待退款 ',
+  `reason` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '审核不通过原因',
+  `stop_pay_time` bigint DEFAULT NULL COMMENT '截止支付时间',
+  `invest_type` int DEFAULT NULL COMMENT '投资单类型：1电站订单 2投资订单',
+  PRIMARY KEY (`invest_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='电站投资';

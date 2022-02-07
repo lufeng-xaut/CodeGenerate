@@ -1,0 +1,73 @@
+
+import com.github.pagehelper.PageInfo;
+import com.yimibit.business.common.contain.ResponseData;
+import com.yimibit.business.config.interceptor.AuthIgnore;
+import com.yimibit.business.controller.base.BackstageBaseController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * <p>
+ * [(${clazzDefine.clazzComment})] 前端控制器
+ * </p>
+ *
+ * @author
+ * @since
+ */
+@RestController
+@RequestMapping("/")
+public class [(${clazzDefine.clazzName})]Controller extends BackstageBaseController {
+    @Autowired
+    private [(${clazzDefine.clazzName})]BusinessService [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService;
+
+    /**
+     * 后台-根据id查询[(${clazzDefine.clazzComment})]
+     * @param request
+     * @return
+     */
+    @AuthIgnore
+    @GetMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/get[(${clazzDefine.clazzName})]")
+    public ResponseData get[(${clazzDefine.clazzName})](@ModelAttribute Get[(${clazzDefine.clazzName})]Request request) {
+        Get[(${clazzDefine.clazzName})]Response response = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.get[(${clazzDefine.clazzName})](request, getUserId());
+        return ResponseData.success(response);
+    }
+
+    /**
+     * 后台-新增/编辑[(${clazzDefine.clazzComment})]
+     * @param request
+     * @return
+     */
+    @AuthIgnore
+    @PostMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/put[(${clazzDefine.clazzName})]")
+    public ResponseData put[(${clazzDefine.clazzName})](@RequestBody Put[(${clazzDefine.clazzName})]Request request) {
+        String [(${#strings.unCapitalize(clazzDefine.clazzName)})]Id = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.put[(${clazzDefine.clazzName})](request, getUserId());
+        return ResponseData.success([(${#strings.unCapitalize(clazzDefine.clazzName)})]Id);
+    }
+
+    /**
+     * 后台-删除[(${clazzDefine.clazzComment})]
+     * @param request
+     * @return
+     */
+    @AuthIgnore
+    @DeleteMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/delete[(${clazzDefine.clazzName})]")
+    public Object delete[(${clazzDefine.clazzName})](@RequestBody Delete[(${clazzDefine.clazzName})]Request request) {
+        [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.delete[(${clazzDefine.clazzName})](request, getUserId());
+        return ResponseData.success();
+    }
+
+    /**
+     * 后台-分页查询[(${clazzDefine.clazzComment})]
+     * @param request
+     * @return
+     */
+    @AuthIgnore
+    @PostMapping("[(${#strings.unCapitalize(clazzDefine.clazzName)})]/get[(${clazzDefine.clazzName})]Page")
+    public ResponseData get[(${clazzDefine.clazzName})]Page(@RequestBody Page[(${clazzDefine.clazzName})]Request request) {
+        PageInfo<Get[(${clazzDefine.clazzName})]Response> pageInfo = [(${#strings.unCapitalize(clazzDefine.clazzName)})]BusinessService.get[(${clazzDefine.clazzName})]Page(request, getUserId());
+        return ResponseData.success(pageInfo);
+    }
+
+}
